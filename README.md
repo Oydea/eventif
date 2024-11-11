@@ -16,7 +16,7 @@ git clone https://github.com/Oydea/eventif.git
 cd eventif
 python -m venv .eventif
 source .eventif/bin/activate
-pip install -r requirements.txt
+pip install -r requirements-dev.txt
 cp contrib/env-sample .env
 python manage.py test
 ```
