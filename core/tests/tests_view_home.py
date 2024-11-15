@@ -16,3 +16,6 @@ class HomeTest(TestCase):
     
     def test_link_subscription(self):
         self.assertContains(self.response, 'href="/inscricao/"')
+  
+    def test_link_contact(self):
+        self.assertContains(self.response, 'href="/contato"')
