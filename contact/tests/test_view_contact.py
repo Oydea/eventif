@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.core import mail
 from contact.forms import ContactForm
+from contact.models import Contact
 
 #Testes pro carregamento da página de contato
 class ContactGet(TestCase): 
@@ -43,6 +44,9 @@ class ContactPostValid(TestCase):
     def test_send_contact_email(self):
         self.assertEqual(1, len(mail.outbox))
 
+    def test_save_contact(self):
+        self.assertTrue(Contact.objects.exists())
+
 #Testes pra post inválido
 class ContactPostInvalid(TestCase):
     def setUp(self):
@@ -62,6 +66,9 @@ class ContactPostInvalid(TestCase):
     def test_form_has_error(self):
         form = self.resp.context['form']
         self.assertTrue(form.errors)
+
+    def test_dont_save_contact(self):
+        self.assertFalse(Contact.objects.exists())
 
 #Testes pra mensagem de sucesso
 class ContactSuccessMessage(TestCase):

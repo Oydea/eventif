@@ -5,6 +5,7 @@ from django.core import mail
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.conf import settings
+from contact.models import Contact
 # Create your views here.
 #Se o metodo do request for post, faz create, senão faz new
 def contact(request):
@@ -18,6 +19,7 @@ def create(request):
     form = ContactForm(request.POST)
     if not form.is_valid():
         return render(request, 'contact/contact_form.html', {'form': form})
+    contact = Contact.objects.create(**form.cleaned_data)
     _send_mail(
         'contact/contact_email.txt',
         form.cleaned_data,
