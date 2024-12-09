@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+
 {% block content %}
 <section>
 	<div class="speakers content row padding-bottom-3 desktop-8 container">
@@ -7,7 +8,7 @@
 		</h2>
 		<img class="photo" src="{{ speaker.photo }}">
 		<p>
-			{{ speaker.description }}
+			{{ speaker.description|linebreaks }}
 		</p>
 	</div>
 </section>
